@@ -1,0 +1,31 @@
+{# MACRO: Menu #}
+{% macro menu( menu ) %}
+  <ul class="nav {{ menu.slug }}">
+    {% for item in menu.items %}
+      {% set classes = item.classes %}
+      {% if item.object_id == is_active %}
+        {% set classes = classes ~' active ' %}
+      {% endif %}
+      {% if item.children %}
+        {% set classes = classes ~ ' has-children ' %}
+      {% endif %}
+      {% if loop.first %}
+        {% set classes = classes ~ ' first ' %}
+      {% elseif loop.last %}
+        {% set classes = classes ~ ' last ' %}
+      {% endif %}
+      <li class="nav-main-item {{ classes }}">
+        <a class="nav-main-link" href="{{ item.url|fixUrls }}">{{ item.title }}</a>
+        {% if item.children %}
+          <ul class="nav-drop">
+            {% for child in item.children %}
+              <li class="nav-drop-item">
+                  <a href="{{ child.url|fixUrls }}">{{ child.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h4>Template: <span>{{ _self.getTemplateName() }}</span></h4>
+{% include '_includes/info.html' %}
+{{ dump(acf.acf_image_url|fixAssets) }}
+{{ dump(acf.acf_page_link|fixUrls) }}
+{% endblock %}

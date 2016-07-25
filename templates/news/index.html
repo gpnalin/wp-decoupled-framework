@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h4>Template: <span>{{ _self.getTemplateName() }}</span></h4>
+{% include '_includes/info.html' %}
+<h1>News</h1>
+<ul>
+    {% for entry in entries %}
+        <li class="blog-entry-{{ loop.index }} {% if loop.first %} first {% elseif loop.last %} last {% endif %}">
+          <h3><a href="{{ entry.link|fixUrls }}">{{ entry.title.rendered|e }}</a></h3>
+          <div class="content">{{ entry.content.rendered|raw }}</div>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

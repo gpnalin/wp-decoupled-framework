@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h4>Template: <span>{{ _self.getTemplateName() }}</span></h4>
+{% include '_includes/info.html' %}
+<h1>Movies</h1>
+<ul>
+    {% for entry in entries %}
+        <li>{{ entry.title.rendered|e }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

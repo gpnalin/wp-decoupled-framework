@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}Test Application{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="{{ assets('css/master.css') }}" media="screen" charset="utf-8">
+    <script src="{{ assets('js/master.js') }}" type="text/javascript"></script>
+  </head>
+  <body>
+    {% import '_includes/macros.html' as macros %}
+    <header id="header">
+      {% block header %}
+        <nav class="nav-main-menu">
+          {{ macros.menu( globals.menus.main_menu ) }}
+        </nav>
+      {% endblock %}
+    </header>
+
+    <div id="body-content">
+      {% block body %}{% endblock %}
+    </div>
+
+    <footer id="footer">
+      {% block footer %}
+        <nav class="nav-footer-menu">
+          {{ macros.menu( globals.menus.footer_menu ) }}
+        </nav>
+      {% endblock %}
+    </footer>
+  </body>
+</html>
